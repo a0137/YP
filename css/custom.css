@@ -1,0 +1,744 @@
+:root {
+	--colorText: rgb(46, 46, 46);
+	--colorBorder: rgb(255, 0, 245);
+	--colorBack: rgb(238, 238, 238);
+	--colorMenuBack: rgba(238, 238, 238, 0.8);
+	--colorHover: rgb(255, 88, 216);
+	--pagebackcolor: rgb(0,0,0);
+	--footerareacolor: rgba(0, 0, 0, 0.99);
+	--footerAreaBorderColor: rgba(0, 0, 0, 0.7);
+	--extremeTestColor: rgba(255, 115, 2, 0.5);
+	--footerHeight: 55px;
+	
+}
+
+.test{
+	background-color: var(--extremeTestColor);
+}
+
+body {
+	background-color: var(--colorBack);
+	margin: 0px;
+	padding: 0px;
+	
+}
+
+p{
+	font-family: "proxima-nova", sans-serif;
+	color: var(--colorText) !important; 
+	font-weight: 300;
+	font-style: normal;
+	font-size: 1em;
+}
+
+a {
+	color: var(--colorBorder); 
+}
+
+a:hover {
+	color: var(--colorHover); 
+}
+
+
+/* BREAKPOINTS */
+
+.square {
+	position: fixed;
+	width: 20px;
+	height: 20px;
+	z-index: 9999999999999;
+}
+
+@media screen and (max-width: 576px) {
+	.square {
+		background-color: red;
+	}
+	.headers {
+		font-size: 1.95em;
+		line-height: 1em;
+	}
+	.ySignature {
+		font-size: 1.5em ;
+		line-height: 1em;
+	}
+	.contentBox{
+		padding-left: 35px;
+		padding-right:35px;
+		width: 100%;
+		margin-top:10%;
+	}
+	.contentBoxRight {
+		width: 100%;
+		padding-left: 35px;
+		padding-right:35px;
+		margin-top:10px;
+	}
+	.container{	
+		flex-direction: column;
+		height: auto;
+	}
+	.darth{
+		width: 100px;
+		height: 130px;
+	}
+	.father{
+		width: 200px;
+		height: 350px;
+	}
+	.son{
+		width: 130px;
+		height: calc(470px + var(--footerHeight));
+	}
+	form {
+	  width: 100%;
+	  }
+	.spacer{
+		height:15px;  
+	}
+}
+
+@media screen and (min-width: 576px) {
+	.square {
+		background-color: green;
+	}
+	.headers {
+		font-size: 2em;
+		line-height: 1em;
+	}
+	.ySignature {
+		font-size: 1.8em ;
+		line-height: 1em;
+	}
+	.contentBox{
+		width: 100%;
+		margin-top: 10%;
+		margin-left: 0;
+		padding-right: 35px;
+		flex: 1 !important;
+	}
+	.contentBoxRight {
+		width: 100%;
+		margin-top: 10%;
+		flex: 1 !important;
+	}
+	.container{	
+		flex-direction: row;
+		height:auto;
+	}
+	.darth{
+		width: 140px;
+		height: 170px;
+	}
+	.father{
+		width: 200px;
+		height: 480px;
+	}
+	.son{
+		width: 140px;
+		height: calc(610px + var(--footerHeight));
+	}
+	form {
+	  width: 80%;
+	  }
+	
+	  
+}
+
+@media screen and (min-width: 768px) {
+	.square {
+		background-color: blue;
+	}
+	.headers {
+		font-size: 3em ;
+		line-height: 1em;
+	}
+	.ySignature {
+		font-size: 2.8em ;
+		line-height: 1em;
+	}
+	.darth{
+		width: 140px;
+		height: 170px;
+	}
+	.father{
+		width: 200px;
+		height: 480px;
+	}
+	.son{
+		width: 140px;
+		height: calc(610px + var(--footerHeight));
+	}
+	.spacer{
+	height:270px;  
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.square {
+		background-color: orange;
+	}
+	.headers {
+		font-size: 4em ;
+		line-height: 1em;
+	}
+	.ySignature {
+		font-size: 3.5em ;
+		line-height: 1em;
+	}
+	.darth{
+		width: 170px;
+		height: 200px;
+	}
+	.father{
+		width: 220px;
+		height: 540px;
+	}
+	.son{
+		width: 170px;
+		height: calc(700px + var(--footerHeight));
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.square {
+		background-color: purple;
+	}
+	.darth{
+		width: 200px;
+		height: 230px;
+	}
+	.father{
+		width: 280px;
+		height: 600px;
+	}
+	.son{
+		width: 200px;
+		height: calc(810px + var(--footerHeight));
+	}
+}
+	
+
+/* TEXT */
+
+.headers {
+	font-family: 'Unbounded', sans-serif ; 
+	font-weight: 900 ;
+	color: var(--colorText); 
+}
+
+.dark {
+	color: var(--colorBack) !important;
+}
+
+.subHead {
+	font-weight:300 ;
+	font-size: 1em ; 
+	line-height: 1.7em ;
+	margin-top: 1em;
+}
+
+.extraBold {
+	font-weight:900 !important;
+}
+
+.ySignature {
+	text-align: right; 
+	font-weight: 200 ; 
+}
+
+/* ELEMENTS */
+
+.container{
+  position:relative;
+  display: flex;
+  width:100%;
+  /* height:100vh; */
+  padding: 0 !important;
+}
+
+/* .contentBox{
+	
+}
+.contentBoxRight {
+	
+} */
+
+
+
+.hero {
+  position:sticky;
+  top:0;
+  width:100%;
+  height:100vh;
+  background:var(--colorBack);
+  background: url(../imgs/back.jpg);
+  background-size: cover;
+  background-position: center bottom;
+}
+
+.heroHeader {
+	position: absolute;
+	margin-top: 15%;
+	margin-left: 10%;
+	}
+
+.father{
+	position: absolute;
+	background: url(../imgs/father.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	transform: scaleX(-1);
+	bottom: var(--footerHeight);
+	right: 0;
+	/* width: 280px;
+	height: 600px; */
+	margin-right: 5%;
+}
+
+.son {
+	position: absolute;
+	background: url(../imgs/son.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	transform: scaleX(-1);
+	bottom: 0;
+	right: 0;
+	/* width: 200px;
+	height: calc(810px + var(--footerHeight)); */
+	margin-right: 20%;
+}
+
+.darth{
+	position: absolute;
+	/* background-color: var(--extremeTestColor) !important; */
+	background: url(../imgs/darth.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	transform: scaleX(-1);
+	bottom: var(--footerHeight);
+	left: 0;
+	/* width: 200px;
+	height: 230px; */
+	margin-left: 10%;
+	z-index: 999999999;
+}
+
+.second{
+  position:relative;
+  top:0;
+  width:100%;
+  height: auto;
+  padding-bottom: var(--footerHeight);
+  background:var(--colorBack);
+  box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.second.noshadow{
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.0);
+}
+
+.second.dark{
+	background:var(--colorText);
+}
+
+.spacer{
+	position: relative;
+	width: 100%;
+	height:270px;
+	
+	
+}
+
+
+
+/* IMAGE STRIPE */
+
+.randomimgsWrapper {
+   overflow: hidden;
+   position: relative;
+   flex: 1;
+   width: 100%;
+   background-color: var(--colorText);
+ }
+
+ #randomimgsContainer {
+   width: 50%;
+   display: flex;
+   position: relative;
+   overflow: visible;
+   
+ }
+ 
+ #randomimgs {
+
+   display: flex;
+   overflow: visible;
+   flex-wrap: nowrap;
+ }
+ 
+ #randomimgs img {
+   height: 100%;
+   flex-shrink: 0;
+   margin-left: 10px;
+   filter: grayscale(100%);
+   transition: filter 1s;
+	}
+
+#randomimgs img:hover {
+	   filter: grayscale(0%); 
+	}	
+ 
+  @media screen and (max-width:991.98px){
+   #randomimgs  {
+   height: 300px;
+   }
+   }
+   
+@media screen and (max-width: 767.98px) {
+  #randomimgs {
+	height: 290px;
+  }
+   }
+   
+@media screen and (min-width: 992px) and (max-width: 1199.98px) {
+  #randomimgs {
+	height: 300px;
+  }
+   }
+   
+@media screen and   (min-width: 1199.98px) {
+   #randomimgs {
+	 height: 400px;
+   }
+	} 
+
+
+/* TOP THING */
+
+.topThing {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	overflow: visible;
+	/* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); */
+	}
+
+.topThing img {
+		filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.3));
+		margin-top: -60px;
+	}
+/* FORM */
+
+form {
+  /* width: 80%;  */
+  margin: 0 auto; /* Выравнивание по центру */
+ font-family: "proxima-nova", sans-serif;
+ color: var(--colorText) !important; 
+ font-weight: 300;
+ font-style: normal;
+ font-size: 1em;
+  padding: 0px;
+ 
+}
+
+label {
+  display: block; /* Размещаем метки на новой строке */
+  margin-bottom: 5px; /* Расстояние между метками */
+  /* font-weight: bold; /* Жирный текст для меток */ */
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+	font-family: "proxima-nova", sans-serif;
+	color: var(--colorText) !important; 
+	font-weight: 300;
+	font-style: normal;
+	font-size: 1em;
+	  width: 100%; 
+	  padding: 10px; /* Внутренний отступ для полей */
+	  margin-bottom: 20px; /* Расстояние между полями */
+	  background-color: var(--colorBack);
+	  border-color: var(--colorText);
+	  border-bottom: 1px;
+	  border-left: 0px;
+	  border-right: 0px;
+	  border-top: 0px;
+	  border-style: solid;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  outline: none; /* Убираем стандартное оформление фокуса */
+  /* Другие стили, если нужно */
+}
+
+textarea {
+  height: 100px; /* Высота текстового поля */
+}
+
+input[type="submit"] {
+  background-color: var(--colorBorder); /* Цвет фона кнопки отправки */
+  color: var(--colorBack); /* Цвет текста кнопки отправки */
+  padding: 10px 20px; /* Внутренний отступ кнопки */
+  border: none; /* Убираем границу кнопки */
+  border-radius: 3px; /* Закругляем углы кнопки */
+  cursor: pointer; /* Значок указателя при наведении на кнопку */
+}
+
+input[type="submit"]:hover {
+  background-color: var(--colorHover); /* Изменение цвета фона при наведении */
+}
+
+
+/* FOOTER */
+
+.allPagesFooter {
+	width: 100%;
+	height: var(--footerHeight);
+	position: fixed;
+	bottom: 0;
+	background-color: var(--footerareacolor);
+	align-items: center; !important;
+	
+}
+
+.forFooter{
+	display: flex;
+	align-items: center;
+}
+
+p.footerText{
+	/* font-family: 'Unbounded', sans-serif !important; 
+	font-weight: 900 !important; */
+	color: var(--colorBack) !important; 
+	font-size: 0.8em;
+	margin-top: 1.4em;
+}
+
+
+.footerLogo {
+	width: 40px;
+	height: 40px;
+	background-image: url(../imgs/y_pink.svg);
+	margin-right: 15px!important;
+	background-repeat: no-repeat;
+	
+}
+
+#ageRestriction {
+	margin-left: auto;
+}
+
+/* Плавность и производительность */
+.hero,
+.father, .son, .darth { will-change: transform; transform: translateZ(0); }
+
+.hero { background-position: 50% 0; background-size: cover; }
+
+/* Небольшой запас по краям, чтобы не было «оголений» при сдвигах */
+.father, .son, .darth { transition: transform 0s; } /* анимацию берёт на себя JS */
+
+/* бегущая лента */
+.stripe { overflow:hidden; padding:0px 0; position:relative }
+.stripe__track{
+  display:flex; gap: 0px;
+  will-change: transform;
+  animation: stripeMove var(--dur, 30s) linear infinite;
+}
+.stripe__img{height:400px; flex:0 0 auto; object-fit:cover; border-radius:0px; user-select:none; pointer-events:none}
+
+/* движение на точную ширину половины трека в пикселях */
+@keyframes stripeMove{
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(calc(var(--half) * -1px),0,0); }
+}
+
+/* ГАЛЕРЕЯ: ч/б → цвет по hover */
+.stripe__img{
+  height:400px; flex:0 0 auto; object-fit:cover; border-radius:0px;
+  user-select:none;
+  pointer-events:auto;        /* было none — нужно, чтобы срабатывал :hover */
+  cursor:default;             /* курсор не меняется */
+  filter: grayscale(100%);
+  transition: filter .35s ease;
+}
+.stripe__img:hover{
+  filter: grayscale(0%);
+}
+/* по желанию: пауза при ховере */
+/*.stripe:hover .stripe__track{ animation-play-state: paused }*/
+
+
+
+/* розовая галочка, центр низа hero */
+.scroll-cue{
+  position:absolute; left:50%; bottom:100px;
+  width:28px; height:28px; transform:translateX(-50%) rotate(45deg);
+  border-right:4px solid #ff2aa1;   /* розовый цвет */
+  border-bottom:4px solid #ff2aa1;
+  border-radius:2px;
+  opacity:.9;
+  cursor:default;                   /* курсор не меняется */
+  animation:cue-bounce 1.8s ease-in-out infinite;
+}
+
+/* легкое мерцание и подпрыгивание */
+@keyframes cue-bounce{
+  0%,100% { transform:translateX(-50%) rotate(45deg) translateY(0);    opacity:.85; }
+  50%     { transform:translateX(-50%) rotate(45deg) translateY(6px);  opacity:1;   }
+}
+
+/* уважение prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .scroll-cue{ animation:none; }
+}
+/* FIX: hero остаётся липким и работает параллакс фона */
+.hero{
+  position: sticky !important;
+  top: 0 !important;
+  background-position: 50% 0 !important; /* для скрипта параллакса */
+  background-size: cover !important;
+}
+
+
+
+
+
+
+
+/* === PAGE 02 — вернуть нормальную раскладку и оформить CTA === */
+
+/* Возвращаем контейнеру флекс-строку и вертикальный центр */
+.second.dark > .container{
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  align-items: center;           /* выравнивание по вертикали */
+  min-height: auto !important;   /* ничего не тянем на весь экран */
+}
+
+/* Сохраняем две колонки: лево/право (ширины у тебя заданы выше в медиа-правилах) */
+.second.dark .contentBox{
+  margin-top: 0 !important;
+}
+.second.dark .contentBoxRight{
+  margin-top: 0 !important;
+  text-align: center;
+}
+
+/* Розовая подложка под заголовок/ссылку «Скачайте презентацию с кейсами.» */
+.second.dark .contentBoxRight a,
+.second.dark .contentBoxRight .subHead,
+.second.dark .contentBoxRight h2.subHead{
+  display: inline-block;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: clamp(22px, 2.8vw, 36px);
+  line-height: 1.1;
+  color: #0b0f1a;                 /* тёмный текст */
+  background: #ff2aa1;            /* розовая подложка */
+  padding: 10px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(255,42,161,.25);
+}
+/* PAGE 02 — вернуть вертикальные отступы как в первом блоке */
+.second.dark{
+  padding-top: 60px !important;
+  padding-bottom: var(--footerHeight) !important; /* как было у .second */
+}
+/* === PAGE 02: отступы как в PAGE 1 === */
+
+/* не добавляем свой padding-top */
+.second.dark{
+  padding-top: 0 !important;
+  padding-bottom: var(--footerHeight) !important; /* как у .second */
+}
+
+/* на мобилке (≤576px) у правой колонки было 10px — вернём */
+@media (max-width: 576px){
+  .second.dark .contentBoxRight{ 
+	margin-top: 10px !important;
+  }
+}
+
+/* начиная с 576px у обеих колонок было 10% — вернём */
+@media (min-width: 576px){
+  .second.dark .contentBox,
+  .second.dark .contentBoxRight{
+	margin-top: 10% !important;
+  }
+}
+/* === FULLSCREEN PAGES (PAGE 01 / PAGE 02 / PAGE 03) === */
+.second,
+.second.dark {
+  /* высота окна минус фикс-футер */
+  min-height: calc(100vh - var(--footerHeight));
+  display: block;                /* оставляем секцию блочной */
+}
+
+/* контейнер внутри секций тянем на ту же высоту и центрируем по вертикали */
+.second > .container,
+.second.dark > .container {
+  min-height: inherit;           /* берёт calc(...) от родителя */
+  display: flex;                 /* две колонки остаются колонками */
+  flex-direction: row;
+  align-items: center;           /* вертикальное выравнивание контента */
+}
+
+/* мобильные — можно отпустить высоту, если контента много */
+@media (max-width: 576px){
+  .second,
+  .second.dark {
+	min-height: calc(100vh - var(--footerHeight));
+  }
+  .second > .container,
+  .second.dark > .container {
+	align-items: flex-start;     /* на мобиле обычно читается лучше */
+  }
+}
+/* === Quick fix: PAGE 02 на весь экран минус лента и футер === */
+:root { --stripeHeight: 400px; } /* поменяй число при необходимости */
+
+.second.dark{
+  min-height: calc(100vh - var(--footerHeight) - var(--stripeHeight));
+}
+
+@media (max-width: 768px){
+  :root{ --stripeHeight: 260px; }
+  .second.dark{
+	min-height: calc(100vh - var(--footerHeight) - var(--stripeHeight));
+  }
+}
+
+@supports (height: 100dvh){
+  .second.dark{
+	min-height: calc(100dvh - var(--footerHeight) - var(--stripeHeight));
+  }
+}
+/* Альтернатива: для PAGE 02 минус ~400px под ленту (если она вне контейнера) */
+@media (min-width: 769px){
+  body > .second.dark:nth-of-type(2){
+	min-height: calc(100dvh - var(--footerHeight) - 400px);
+	display: block;            /* без grid */
+  }
+}
+body > .second:nth-of-type(-n+3){
+  min-height: calc(100dvh - var(--footerHeight));
+}
+/* === Fullscreen height for PAGE 01..03 without touching layout/margins === */
+body > .second:nth-of-type(-n+3){
+  min-block-size: calc(100dvh - var(--footerHeight));
+  box-sizing: border-box;
+}
+
+/* PAGE 02 only: keep gallery stripe pinned at bottom without changing inner margins */
+body > .second.dark:nth-of-type(2){
+  display: grid;
+  grid-template-rows: 1fr auto; /* main content grows, stripe sits at bottom */
+}

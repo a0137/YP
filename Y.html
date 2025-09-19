@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="EN" prefix="og: http://ogp.me/ns#">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;900&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.typekit.net/fjq5udh.css">
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script>
+	(() => {
+	  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+	  if (reduce) return;
+	
+	  const hero = document.querySelector('.hero');
+	  const father = document.querySelector('.father');
+	  const son    = document.querySelector('.son');
+	  const darth  = document.querySelector('.darth');
+	
+	  // Коэффициенты глубины (чем больше, тем «ближе к зрителю»)
+	  const layers = [
+		{ el: darth,  sx: 18, sy: 14, scroll: 0.25 },  // ближний
+		{ el: son,    sx: 14, sy: 10, scroll: 0.18 },  // средний
+		{ el: father, sx: 10, sy:  8, scroll: 0.12 },  // дальний
+	  ];
+	  const bg = { baseY: 0, scroll: 0.10 }; // параллакс фона героя
+	
+	  const state = {
+		mx: 0, my: 0,        // текущее смещение мышью
+		tmx: 0, tmy: 0,      // целевое смещение мышью
+		sy: 0, tsy: 0        // скролл-смещение
+	  };
+	
+	  const lerp = (a,b,t)=>a+(b-a)*t;
+	  const clamp = (v, min, max)=>Math.min(max, Math.max(min, v));
+	
+	  // Цель от мыши — в пикселях относительно центра экрана
+	  window.addEventListener('mousemove', (e) => {
+		const cx = window.innerWidth  * 0.5;
+		const cy = window.innerHeight * 0.5;
+		// -1..1 умножаем на «амплитуду» (20px)
+		state.tmx = clamp((e.clientX - cx) / cx, -1, 1) * 20;
+		state.tmy = clamp((e.clientY - cy) / cy, -1, 1) * 12;
+	  }, { passive: true });
+	
+	  // Цель от скролла
+	  const onScroll = () => { state.tsy = window.scrollY || window.pageYOffset; };
+	  window.addEventListener('scroll', onScroll, { passive: true });
+	  onScroll();
+	
+	  // Основной цикл — инерция 0.08 даёт «масляную» плавность
+	  function frame() {
+		state.mx = lerp(state.mx, state.tmx, 0.08);
+		state.my = lerp(state.my, state.tmy, 0.08);
+		state.sy = lerp(state.sy, state.tsy, 0.08);
+	
+		// фон героя — сдвиг по Y
+		if (hero) {
+		  const by = bg.baseY - state.sy * bg.scroll + state.my * 0.5;
+		  hero.style.backgroundPosition = `50% ${by}px`;
+		}
+	
+		// слои
+		layers.forEach(({el, sx, sy, scroll}) => {
+		  if (!el) return;
+		  const x = state.mx * (sx/20);          // реакция на мышь
+		  const y = -state.sy * scroll + state.my * (sy/12); // параллакс + мышь
+		  el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+		});
+	
+		requestAnimationFrame(frame);
+	  }
+	  requestAnimationFrame(frame);
+	
+	  // Пауза при скрытой вкладке — экономит батарею
+	  document.addEventListener('visibilitychange', ()=>{
+		if (!document.hidden) requestAnimationFrame(frame);
+	  });
+	})();
+	</script>
+	
+	
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+	  const track = document.getElementById('stripeTrack');
+	  if (!track) return;
+	
+	  const GALLERY = ["001.jpg","002.jpg","003.jpg","004.jpg","005.jpg","006.jpg","007.jpg","008.jpg","009.jpg","010.jpg"];
+	  const base = "imgs-gal/";
+	
+	  // Строим ленту (двойной набор)
+	  const frag = document.createDocumentFragment();
+	  for (let k = 0; k < 2; k++) {
+		GALLERY.forEach(name => {
+		  const img = new Image();
+		  img.src = base + name;
+		  img.alt = "";
+		  img.loading = "lazy";
+		  img.className = "stripe__img";
+		  frag.appendChild(img);
+		});
+	  }
+	  track.appendChild(frag);
+	
+	  // После загрузки всех изображений — считаем точную половину в px
+	  const imgs = [...track.querySelectorAll('img')];
+	  let loaded = 0;
+	  const done = () => {
+		// половина контента = ширина всего трека / 2
+		const half = Math.round(track.scrollWidth / 2);
+		track.style.setProperty('--half', half);
+	
+		// скорость: 60 пикс/с (настройка). Длительность = half / 60
+		const speed = 60; // px/sec
+		track.style.setProperty('--dur', (half / speed) + 's');
+	  };
+	  imgs.forEach(img => {
+		if (img.complete) { if (++loaded === imgs.length) done(); }
+		else img.addEventListener('load', () => { if (++loaded === imgs.length) done(); }, { once:true });
+	  });
+	});
+	</script>
+
+
+
+
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	
+
+	<title>ЮНОСТЬ.плюс</title>
+   </head>
+
+  <body>
+  		
+	<!-- <div class="square"></div>	  -->
+			  
+		<!-- HERO -->
+		
+		<div class="hero">
+		<div class="container" style="height:100vh;">	 
+			 <div class="heroHeader">
+				 <h2 class="headers">Мы — <br>cпециалисты<br>по медийной<br>рекламе<span style="color: var(--colorBorder);">.</span></h2>
+				 <p class="headers ySignature">юность.плюс</p>	
+			 </div>
+			 <div class="father"></div>
+			 <div class="son"></div>
+		<a class="scroll-cue" href="#about" aria-label="Листайте вниз"></a>
+		 </div>
+		 
+		 </div>
+		
+		 <!-- PAGE 01 -->
+		 
+		<div class="second">
+			 <div class="container">	
+				 <div class="contentBox">
+					 <h2 class="headers" style="margin-bottom: 0.5em;">Что<br>и как<br>мы делаем<span style="color: var(--colorBorder);">.</span></h2>
+					 <p class="headers subHead"><span class="extraBold">Что?</span> С 2017 года выстраиваем  эффективные каналы коммуникаций между прокатчиком и покупателем билетов в кино.</p>
+					 <p class="headers subHead"><span class="extraBold">Почему?</span> Просто мы любим кино.</p>
+					 <p class="headers subHead"><span class="extraBold">Как?</span>  Очень просто!</p>
+			 
+			 </div>
+				 <div class="contentBoxRight" ><p> <span class="headers subHead extraBold">Банерная реклама</span><br>Баннерная реклама позволяет эффективно охватить целевую аудиторию (ЦА), привлечь качественный трафик.<br>
+					 Сети: Google*, Яндекс (РСЯ), VideoTarget, between exchange, MyTarget<br>
+					 Биллинг: CPM, FIX CPM, CPC</p>
+					 
+					 <p><span class="headers subHead extraBold">Видеореклама</span><br>Ролики позволяют увеличить осведомленность ЦА.<br>
+					 Сети: Google*, Яндекс (РСЯ), VideoTarget, AdRiver, VideoNow, MoeVideo<br>
+					 Биллинг: CPM, FIX CPM, CPV, CPC</p>
+					 
+					 <p><span class="headers subHead extraBold">Мобильная реклама</span><br>Реклама на инвентаре популярных мобильных приложений позволяет эффективно охватить ЦА и привлечь наиболее заинтересованных пользователей.<br>
+					 Сети: Google*, Яндекс (РСЯ), VideoTarget, between exchange, YABBI, Hyper, Kidoz<br>
+					 Биллинг: CPM, FIX CPM, CPV, CPC</p>
+					 
+					 <p><span class="headers subHead extraBold">Социальные сети</span><br>VK, OK, Facebook*, Instagram*, Telegram, MyTarget<br>
+					 Биллинг: CPM, FIX CPM, FIX, CPV, CPC</p>
+					 
+					 <p><span class="headers subHead extraBold">Спецразмещения:</span><br>Яндекс (развлекательные проекты), RAMBLER & Co, YouTube<br>
+					 Биллинг: FIX<br><br>
+				<span style="font-size: 
+				0.8em">*Временно недоступно</span></p></div>	 
+					 
+			 </div>
+		 </div>
+		 
+		 <!-- PAGE 02 --><!-- перенеси <section class="stripe"> ... </section> внутрь .second.dark > .container, в самый низ -->
+
+			
+		<div class="second dark">
+			 
+			
+			   
+			    <div class="container">	
+				
+				  
+				  <div class="contentBox " >
+					  <h2 class="headers dark" style="margin-bottom: 0.5em;">Сделали<br>хорошо<span style="color: var(--colorBorder);">.</span></h2>
+					  <p class="headers dark subHead">Более <span class="extraBold">1000</span> успешных рекламных кампаний.</p>
+					  <p class="headers dark subHead">Более<span class="extraBold"> 200</span> релизов: от&nbsp;отечественного кино — до артхауса, от&nbsp;семейных мультиков — до мировых блокбастеров.</p>
+					  <p class="headers dark subHead">Благодаря доверию клиентов не боимся экспериментировать с&nbsp;новыми каналами коммуникаций и создаем<span class="extraBold"> тренды</span>.</p>
+			  </div>
+				  	 
+				   <div class="contentBoxRight">
+
+				<h2 class="headers dark subHead subHead--pink">Скачайте презентацию с кейсами.</h2>
+				</div>
+  
+				</div>	 
+				
+			  </div>
+			  <div class="stripe" aria-label="gallery">
+				  <div class="stripe__track" id="stripeTrack"></div>
+				</div>
+			  
+			  
+	
+		 
+		
+		<!-- PAGE 03 -->
+		
+		<div class="second">
+			 <div class="container">	
+				 <div class="contentBox">
+					 <h2 class="headers" style="margin-bottom: 0.5em;">Сделали<br>для других&nbsp;—<br>сделаем<br>и&nbsp;для вас<span style="color: var(--colorBorder);">.</span></h2>
+					 <p class="headers subHead"><span class="extraBold">С чего начать?</span> Позвоните нам по телефону<span class="extraBold"> +7&nbsp;(495)&nbsp;151–44–05</span>, напишите нам на электропочту <span class="extraBold">privet@yunost.plus</span> или заполните форму справа.</p>
+					 <p class="headers subHead">Мы будем рады вам помочь!</p>
+					 
+			 
+			 </div>
+				 <div class="contentBox contentBoxRight" >
+					 <form action="sendrer.php" method="post">
+					   <label for="name">Как к вам обращаться?<span style="color: var(--colorBorder);">*</span></label>
+					   <input type="text" id="name" name="name"><br>
+					 
+					   <label for="email">Электропочта:<span style="color: var(--colorBorder);">*</span></label>
+					   <input type="email" id="email" name="email"><br>
+					   
+					   
+					 <label for="email"> Телефон:<span style="color: var(--colorBorder);">*</span></label>
+					 <input type="text" placeholder="Введите номер телефона" id="phone" data-inputmask="'mask': '+7 (999) 999-99-99'">
+
+					 
+					 
+					   <label for="message">Что будем рекламировать?</label>
+					   <textarea id="message" name="message"></textarea><br>
+					 
+					   <input type="submit" value="Отправить">
+					 </form>
+ 
+				 </div>	 
+					 
+			 </div>
+		
+		 </div>
+		
+		<div class="second noshadow">
+			<div class="container">
+		<div class="spacer"></div>
+		</div>
+		</div>
+		 
+		 <!-- FOOTER -->
+		 
+		 <section id="footer">
+			 
+		 <div class="allPagesFooter">
+			 <div class="darth"></div>
+			 <div class="container forFooter" style="height: var(--footerHeight)!important;">
+				<div class="footerLogo"></div>
+				
+				<div style="opacity: 0.7; margin-right: 40px!important;">
+				 <p class="footerText">+7 (495) 151–44–05 privet@yunost.plus<br>© 2017 — <span id="currentYear"></span> <span style="font-family: 'Unbounded', sans-serif !important; 
+				 font-weight: 900 !important;">Юность.плюс</span></p>
+				</div>
+				
+				<div style="opacity: 0.7;">
+				 <p class="footerText">ИНН 773577087594 ОГРН 317774600368519 <br><a href="#" style="color: var(--colorBack) !important; 
+				 text-decoration: none;">Политика конфиденциальности.</a></p>
+				</div>
+				
+				<div id="ageRestriction" style="opacity: 0.4;">
+				 <p class="footerText"><span style="font-family: 'Unbounded'; font-size: 2em; sans-serif !important; 
+				 font-weight: 900 !important;">18+</p>
+				</div>
+			 </div>
+		 </div>
+		 </section>
+		 
+		 
+		 <!-- <div  class="topThing"><img height="110px" src="/imgs/top_pink_thing.svg" />  </div> -->
+		  
+		<script>
+			const currentDate = new Date();
+			const currentYear = currentDate.getFullYear().toString().slice(-2); // Получаем год и обрезаем последние две цифры
+			document.getElementById('currentYear').innerText = currentYear;
+		</script>
+
+		
+		<!-- REQUIRED FOR IMAGE STRIPE -->
+		
+		<!--<script src="js/random-stripe.js"></script>
+		<script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
+		<script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+		<script src="js/horizontal-scrolling.js"></script>-->
+		
+		<!-- REQUIRED FOR PARALLAX -->
+		<script src="js/parallax.js"></script>
+
+		<!-- REQUIRED FOR MASK -->
+		
+		<script>
+		function applyMask(input, mask) {
+		  input.addEventListener('input', function (event) {
+			if (!event.isTrusted) {
+			  return;
+			}
+		
+			const inputVal = event.target.value.replace(/\D/g, '');
+			const maskChars = mask.replace(/\D/g, '').split('');
+		
+			let maskedVal = '';
+			let maskIndex = 0;
+		
+			for (let i = 0; i < inputVal.length; i++) {
+			  if (maskChars[maskIndex] && /\d/.test(inputVal[i])) {
+				maskedVal += maskChars[maskIndex++];
+			  }
+			  maskedVal += inputVal[i];
+			}
+		
+			event.target.value = maskedVal;
+		  });
+		}
+		
+		const phoneInput = document.getElementById('phone');
+		applyMask(phoneInput, '+7 (999) 999-99-99');
+		</script>
+  </body>
+</html>
